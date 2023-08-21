@@ -1,0 +1,1315 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type Season {
+  """A unique identifier"""
+  id: ID!
+
+  """The name of a season"""
+  name: String!
+
+  """The logo of a season"""
+  logo: String!
+
+  """The link of a season"""
+  link: String!
+
+  """The tournaments of a season"""
+  tournaments: [Tournament!]
+}
+
+type TeamLogo {
+  """A unique identifier"""
+  id: ID!
+
+  """The start year of a team logo"""
+  start_year: Float!
+
+  """The end year of a team logo"""
+  end_year: Float
+
+  """The link of a team logo"""
+  logo: String!
+
+  """The team ID of a team logo"""
+  team_id: Float!
+  team: Team!
+}
+
+"""Player tournament model"""
+type PlayerTournament {
+  """A unique identifier"""
+  id: ID!
+
+  """The teams_tournament_id of a player tournament"""
+  teams_tournament_id: Float!
+
+  """The player_id of a player tournament"""
+  player_id: Float!
+
+  """The games of a player tournament"""
+  games: Float
+
+  """The goals of a player tournament"""
+  goals: Float
+
+  """The postseason of a player tournament"""
+  postseason: String
+  team_tournament: TeamTournament
+  player: Player!
+}
+
+"""Player model"""
+type Player {
+  """A unique identifier"""
+  id: ID!
+
+  """The first name of a player"""
+  first_name: String!
+
+  """The last name of a player"""
+  last_name: String!
+
+  """The jersey number of a player"""
+  jersey_number: Float!
+
+  """The position of a player"""
+  player_position: String!
+
+  """The order number of a player"""
+  player_order: Float!
+
+  """The nation id of a player"""
+  nation_id: Float!
+
+  """The birth year of a player"""
+  birth_year: Float!
+
+  """The height of a player"""
+  height: Float
+
+  """The weight of a player"""
+  weight: Float
+
+  """The draft team id of a player"""
+  draft_team_id: Float
+
+  """The start year of a player"""
+  start_year: Float!
+
+  """The end year of a player"""
+  end_year: Float
+
+  """The players of a tournament"""
+  playersTournaments: [PlayerTournament!]
+  draft_team: Team
+  nation: Nation!
+}
+
+"""Nation model"""
+type Nation {
+  """A unique identifier"""
+  id: ID!
+
+  """The name of a nation"""
+  name: String!
+
+  """The short name of a nation"""
+  short_name: String!
+
+  """The flag of a nation"""
+  flag: String!
+
+  """The logo of a nation"""
+  logo: String!
+
+  """The color of a nation"""
+  color: String
+
+  """The teams of a nation"""
+  teams: [Team!]
+
+  """The players of a nation"""
+  players: [Player!]
+}
+
+"""Team model"""
+type Team {
+  """A unique identifier"""
+  id: ID!
+
+  """The full name of a team"""
+  full_name: String!
+
+  """The name of a team"""
+  name: String!
+
+  """The short name of a team"""
+  short_name: String!
+
+  """The start year of a team"""
+  start_year: Float!
+
+  """The end year of a team"""
+  end_year: Float
+
+  """The nation_id of a team"""
+  nation_id: Float!
+
+  """The logos of a team"""
+  logos: [TeamLogo!]!
+
+  """The drafted players of a team"""
+  draft_players: [Player!]
+
+  """The teams tournaments of a tournament"""
+  teamsTournaments: [TeamTournament!]
+  nation: Nation!
+}
+
+"""Team tournament model"""
+type TeamTournament {
+  """A unique identifier"""
+  id: ID!
+
+  """The tournament_id of a team tournament"""
+  tournament_id: Float!
+
+  """The team_id of a team tournament"""
+  team_id: Float!
+
+  """The games of a team tournament"""
+  games: Float
+
+  """The wins of a team tournament"""
+  wins: Float
+
+  """The ties of a team tournament"""
+  ties: Float
+
+  """The losts of a team tournament"""
+  losts: Float
+
+  """The goals for of a team tournament"""
+  goals_for: Float
+
+  """The goals against of a team tournament"""
+  goals_against: Float
+
+  """The postseason of a team tournament"""
+  postseason: String
+
+  """The players of a team tournament"""
+  playersTeamsTournaments: [PlayerTournament!]
+  tournament: Tournament!
+  team: Team!
+}
+
+"""Tournament model"""
+type Tournament {
+  """A unique identifier"""
+  id: ID!
+
+  """The season_id of a tournament"""
+  season_id: ID!
+
+  """The league_id of a tournament"""
+  league_id: ID!
+  season: Season!
+  league: League!
+
+  """The teams tournaments of a tournament"""
+  teamsTournaments: [TeamTournament!]
+}
+
+"""League model"""
+type League {
+  """A unique identifier"""
+  id: ID!
+
+  """The name of a league"""
+  name: String!
+
+  """The short name of a league"""
+  short_name: String!
+
+  """The start year of a league"""
+  start_year: Float!
+
+  """The end year of a league"""
+  end_year: Float
+
+  """The color of a league"""
+  color: String
+
+  """Is the league local"""
+  is_local: Boolean!
+
+  """The logos of a league"""
+  logos: [LeagueLogo!]
+
+  """The tournaments of a league"""
+  tournaments: [Tournament!]
+}
+
+type LeagueLogo {
+  """A unique identifier"""
+  id: ID!
+
+  """The start year of a league logo"""
+  start_year: Float!
+
+  """The end year of a league logo"""
+  end_year: Float
+
+  """The link of a league logo"""
+  logo: String!
+
+  """The league ID of a league logo"""
+  league_id: Float!
+  league: League
+}
+
+"""Teams count by nation model"""
+type TeamDbCountByNation {
+  """The db count of teams"""
+  tms: Float!
+}
+
+"""Players count by nation model"""
+type PlayerDbCountByNation {
+  """The db count of a players"""
+  plrs: Float
+}
+
+"""Draft by nation model"""
+type DraftByNation {
+  """The id of nation"""
+  id: ID!
+
+  """The name of nation"""
+  name: String!
+
+  """The flag of nation"""
+  flag: String!
+
+  """The count of players by nation"""
+  plrs: Float!
+}
+
+"""Draft by team model"""
+type DraftByTeam {
+  """The id of team"""
+  id: ID!
+
+  """The full name of team"""
+  full_name: String!
+
+  """The logo of team"""
+  logo: String!
+
+  """The count of players by team"""
+  plrs: Float!
+}
+
+"""Draft detail model"""
+type DraftDetail {
+  """The id of league"""
+  league_id: ID
+
+  """The short name of league"""
+  short_name: String
+
+  """The id of player"""
+  id: ID!
+
+  """The position of player"""
+  player_position: String!
+
+  """The first name of player"""
+  first_name: String!
+
+  """The last name of player"""
+  last_name: String!
+
+  """The draft team id of player"""
+  draft_team_id: ID!
+
+  """The full name of draft team"""
+  full_name: String!
+
+  """The nation flag of player"""
+  flag: String!
+
+  """The total games of player in NHL"""
+  games_t: Float
+
+  """The total goals of player in NHL"""
+  goals_t: Float
+
+  """The total years of player in NHL"""
+  years_t: Float
+}
+
+"""Free agent model"""
+type FreeAgent {
+  """A unique identifier"""
+  id: ID!
+
+  """The first name of a player"""
+  first_name: String!
+
+  """The last name of a player"""
+  last_name: String!
+
+  """The jersey number of a player"""
+  jersey_number: Float!
+
+  """The position of a player"""
+  player_position: String!
+
+  """The order number of a player"""
+  player_order: Float!
+
+  """The nation id of a player"""
+  nation_id: Float!
+
+  """The birth year of a player"""
+  birth_year: Float!
+
+  """The height of a player"""
+  height: Float
+
+  """The weight of a player"""
+  weight: Float
+
+  """The draft team id of a player"""
+  draft_team_id: Float
+
+  """The start year of a player"""
+  start_year: Float!
+
+  """The end year of a player"""
+  end_year: Float
+
+  """The players of a tournament"""
+  playersTournaments: [PlayerTournament!]
+  draft_team: Team
+  nation: Nation!
+
+  """The flag of player nation"""
+  flag: String!
+}
+
+"""Satnding model"""
+type Standing {
+  """A unique identifier"""
+  id: ID!
+
+  """The tournament_id of a team tournament"""
+  tournament_id: ID!
+
+  """The team_id of a team tournament"""
+  team_id: ID!
+
+  """The games of a team tournament"""
+  games: Float
+
+  """The wins of a team tournament"""
+  wins: Float
+
+  """The ties of a team tournament"""
+  ties: Float
+
+  """The losts of a team tournament"""
+  losts: Float
+
+  """The goals for of a team tournament"""
+  goals_for: Float
+
+  """The goals against of a team tournament"""
+  goals_against: Float
+
+  """The postseason of a team tournament"""
+  postseason: String
+
+  """Goal differential"""
+  gd: Float!
+
+  """Points"""
+  pts: Float!
+
+  """The full name of a team tournament"""
+  full_name: String!
+
+  """The season_id of a team tournament"""
+  season_id: ID!
+
+  """The name of a league tournament"""
+  name: String!
+
+  """The name of a season tournament"""
+  season: String!
+
+  """The logo of a team tournament"""
+  logo: String!
+}
+
+"""Team By Season model"""
+type TeamBySeason {
+  """A unique identifier"""
+  id: ID!
+
+  """The tournament_id of a team tournament"""
+  tournament_id: Float!
+
+  """The team_id of a team tournament"""
+  team_id: Float!
+
+  """The games of a team tournament"""
+  games: Float
+
+  """The wins of a team tournament"""
+  wins: Float
+
+  """The ties of a team tournament"""
+  ties: Float
+
+  """The losts of a team tournament"""
+  losts: Float
+
+  """The goals for of a team tournament"""
+  goals_for: Float
+
+  """The goals against of a team tournament"""
+  goals_against: Float
+
+  """The postseason of a team tournament"""
+  postseason: String
+
+  """The players of a team tournament"""
+  playersTeamsTournaments: [PlayerTournament!]
+  tournament: Tournament!
+  team: Team!
+
+  """Points"""
+  pts: Float!
+
+  """The id of league"""
+  league_id: Float!
+
+  """The id of season"""
+  season_id: Float!
+
+  """The short name of league"""
+  short_name: String!
+}
+
+"""Team By League model"""
+type TeamByLeague {
+  """The id of team"""
+  id: ID!
+
+  """The id of nation"""
+  nation_id: ID!
+
+  """The full name of team"""
+  full_name: String!
+
+  """The country flag of team"""
+  flag: String!
+}
+
+"""The player stat by league"""
+type PlayerStatsByLeague {
+  """The games total"""
+  games_t: Float!
+
+  """The goals total"""
+  goals_t: Float!
+
+  """The start year"""
+  year_start: Float!
+
+  """The end year"""
+  year_end: Float!
+
+  """The count of years"""
+  years: Float!
+
+  """The league ID"""
+  league_id: ID!
+
+  """The short name of league"""
+  short_name: String!
+}
+
+"""The player stat by team"""
+type PlayerStatsByTeam {
+  """The games total"""
+  games_t: Float!
+
+  """The goals total"""
+  goals_t: Float!
+
+  """The start year"""
+  year_start: Float!
+
+  """The end year"""
+  year_end: Float!
+
+  """The count of years"""
+  years: Float!
+
+  """The team ID"""
+  team_id: ID!
+
+  """The full name of team"""
+  full_name: String!
+
+  """The nation flag of team"""
+  flag: String!
+}
+
+"""Player stat and detail model"""
+type PlayerStatDetail {
+  """The ID of player"""
+  player_id: Float!
+
+  """The games of a player"""
+  games: Float!
+
+  """The goals of a player"""
+  goals: Float!
+
+  """The postseason of a player"""
+  postseason: String
+
+  """The first name of a player"""
+  first_name: String!
+
+  """The last name of a player"""
+  last_name: String!
+
+  """The jersey number of a player"""
+  jersey_number: Float!
+
+  """The position of a player"""
+  player_position: String!
+
+  """The order number of a player"""
+  player_order: Float!
+
+  """The nation id of a player"""
+  nation_id: Float!
+
+  """The birth year of a player"""
+  birth_year: Float!
+
+  """The height of a player"""
+  height: Float
+
+  """The weight of a player"""
+  weight: Float
+
+  """The draft team id of a player"""
+  draft_team_id: Float
+
+  """The start year of a player"""
+  start_year: Float!
+
+  """The end year of a player"""
+  end_year: Float
+
+  """The ID of season"""
+  season_id: Float!
+
+  """The ID of league"""
+  league_id: Float!
+
+  """The ID of team"""
+  team_id: Float!
+
+  """The full name of team"""
+  full_name: String!
+
+  """The short name of league"""
+  short_name: String!
+
+  """The name of season"""
+  name: String!
+
+  """The nation flag of player"""
+  player_flag: String!
+
+  """The nation flag of team"""
+  team_flag: String!
+
+  """The league local or not"""
+  is_local: Boolean!
+}
+
+"""Player stat total model"""
+type PlayerStatTotal {
+  """The ID of player"""
+  player_id: Float!
+
+  """The first name of a player"""
+  first_name: String!
+
+  """The last name of a player"""
+  last_name: String!
+
+  """The position of a player"""
+  player_position: String!
+
+  """The order number of a player"""
+  player_order: Float!
+
+  """The nation flag of player"""
+  player_flag: String!
+
+  """The start year of a player"""
+  start_year: Float!
+
+  """The end year of a player"""
+  end_year: Float
+
+  """The total of games"""
+  games_t: Float!
+
+  """The total of goals"""
+  goals_t: Float!
+
+  """The total of years"""
+  years: Float!
+}
+
+"""Count players by nation model"""
+type PlayerCountByNation {
+  """The country id"""
+  id: Float!
+
+  """The country name"""
+  name: String!
+
+  """The country flag"""
+  flag: String!
+
+  """The country color"""
+  color: String!
+
+  """The count of players"""
+  count: Float!
+}
+
+"""Player Comparison By Team model"""
+type PlayerComparisonByTeam {
+  """The team id"""
+  team_id: Float!
+
+  """The country full name"""
+  full_name: String!
+
+  """The count of players"""
+  plrs: Float!
+
+  """The average height of players"""
+  avh: Float!
+
+  """The average weight of players"""
+  avw: Float!
+
+  """The average age of players"""
+  ava: Float!
+}
+
+"""Roster of players"""
+type Roster {
+  """The ID of players_tournaments"""
+  id: ID!
+
+  """The ID of teams_tournament"""
+  teams_tournament_id: ID!
+
+  """The ID of players_tournament"""
+  player_id: ID!
+
+  """The games of a player"""
+  games: Float!
+
+  """The goals of a player"""
+  goals: Float!
+
+  """The postseason of a player"""
+  postseason: String
+
+  """The first name of a player"""
+  first_name: String!
+
+  """The last name of a player"""
+  last_name: String!
+
+  """The jersey number of a player"""
+  jersey_number: Float!
+
+  """The position of a player"""
+  player_position: String!
+
+  """The order number of a player"""
+  player_order: Float!
+
+  """The nation id of a player"""
+  nation_id: ID!
+
+  """The birth year of a player"""
+  birth_year: Float!
+
+  """The height of a player"""
+  height: Float
+
+  """The weight of a player"""
+  weight: Float
+
+  """The draft team id of a player"""
+  draft_team_id: ID
+
+  """The start year of a player"""
+  start_year: Float!
+
+  """The end year of a player"""
+  end_year: Float
+
+  """The ID of season"""
+  season_id: ID!
+
+  """The ID of league"""
+  league_id: ID!
+
+  """The full name of team"""
+  full_name: String!
+
+  """The short name of league"""
+  short_name: String!
+
+  """The name of season"""
+  name: String!
+
+  """The nation flag of player"""
+  flag: String!
+
+  """The logo of league"""
+  league_logo: String!
+
+  """The logo of team"""
+  logo: String!
+
+  """The logo of draft team"""
+  draft_logo: String
+}
+
+"""Tournament by league model"""
+type TournamentByLeague {
+  """The id of tournament"""
+  id: ID!
+
+  """The id of season"""
+  season_id: ID!
+
+  """The id of league"""
+  league_id: ID!
+
+  """The name of season"""
+  season: String!
+
+  """The full name of league"""
+  league: String!
+}
+
+"""Tournament teams details"""
+type TournamentTeamDet {
+  """A unique identifier"""
+  id: ID!
+
+  """The season_id of a tournament"""
+  season_id: ID!
+
+  """The league name of a tournament"""
+  league_name: String!
+
+  """The season name of a tournament"""
+  season_name: String!
+
+  """The team_id of a tournament"""
+  team_id: ID!
+
+  """The full name of a tournament team"""
+  full_name: String!
+
+  """The nation flag of a tournament team"""
+  flag: String!
+
+  """The league_id of a tournament"""
+  league_id: ID!
+}
+
+type Query {
+  leagues: [League!]!
+  league(id: ID!): League!
+  leagueLogos: [LeagueLogo!]!
+  leagueLogo(id: ID!): LeagueLogo!
+  seasons: [Season!]!
+  season(id: ID!): Season!
+  tournaments: [Tournament!]!
+  tournament(id: ID!): Tournament!
+  teamLogos: [TeamLogo!]!
+  teamLogo(id: ID!): TeamLogo!
+  teams(filter: String): [Team!]!
+  team(id: ID!): Team!
+  teamsByNationCount(nationId: ID!): [TeamDbCountByNation!]!
+  nations: [Nation!]!
+  nation(id: ID!): Nation!
+  players(take: Float, filter: String): [Player!]!
+  player(id: ID!): Player!
+  playersDbCountByNation(nationId: ID!): [PlayerDbCountByNation!]!
+  teamsTournaments: [TeamTournament!]!
+  teamTournament(id: ID!): TeamTournament!
+  playersTournaments: [PlayerTournament!]!
+  playerTournament(id: ID!): PlayerTournament!
+  draftByNations: [DraftByNation!]!
+  draftByTeams: [DraftByTeam!]!
+  draftDetails(teamId: ID, nationId: ID): [DraftDetail!]!
+  freeAgents(seasonId: ID!, nationId: ID!): [FreeAgent!]!
+  standings(leagueId: ID!, seasonId: ID!): [Standing!]!
+  teamsBySeasons(teamId: ID!, local: Boolean!): [TeamBySeason!]!
+  teamsByLeague(leagueId: ID!): [TeamByLeague!]!
+  playerStatsByLeagues(playerId: ID!): [PlayerStatsByLeague!]!
+  playerStatsByTeams(playerId: ID!): [PlayerStatsByTeam!]!
+  playersStatsDetails(leagueId: ID, teamId: ID, seasonId: ID, nationId: ID, playerId: ID): [PlayerStatDetail!]!
+  playersStatsTotal(leagueId: ID, teamId: ID, nationId: ID, limit: Int): [PlayerStatTotal!]!
+  playersCountByNation(leagueId: ID, seasonId: ID, teamId: ID): [PlayerCountByNation!]!
+  playersComparisonByTeams(leagueId: ID!, seasonId: ID!): [PlayerComparisonByTeam!]!
+  rosters(leagueId: ID!, seasonId: ID!): [Roster!]!
+  tournamentsByLeague(leagueId: ID!): [TournamentByLeague!]!
+  tournamentTeamsDets(id: ID!): [TournamentTeamDet!]!
+}
+
+type Mutation {
+  createLeague(createLeagueInput: CreateLeagueInput!): League
+  updateLeague(id: ID!, updateLeagueInput: UpdateLeagueInput!): League!
+  removeLeague(id: ID!): League!
+  createLeagueLogo(createLeagueLogoInput: CreateLeagueLogoInput!): LeagueLogo!
+  updateLeagueLogo(id: ID!, updateLeagueLogoInput: UpdateLeagueLogoInput!): LeagueLogo!
+  removeLeagueLogo(id: ID!): LeagueLogo!
+  createSeason(createSeasonInput: CreateSeasonInput!): Season!
+  updateSeason(id: ID!, updateSeasonInput: UpdateSeasonInput!): Season!
+  removeSeason(id: ID!): Season!
+  createTournament(createTournamentInput: CreateTournamentInput!): Tournament!
+  updateTournament(id: ID!, updateTournamentInput: UpdateTournamentInput!): Tournament!
+  removeTournament(id: ID!): Tournament!
+  createTeamLogo(createTeamLogoInput: CreateTeamLogoInput!): TeamLogo!
+  updateTeamLogo(id: ID!, updateTeamLogoInput: UpdateTeamLogoInput!): TeamLogo!
+  removeTeamLogo(id: Int!): TeamLogo!
+  createTeam(createTeamInput: CreateTeamInput!): Team!
+  updateTeam(id: ID!, updateTeamInput: UpdateTeamInput!): Team!
+  removeTeam(id: ID!): Team!
+  createNation(createNationInput: CreateNationInput!): Nation!
+  updateNation(id: ID!, updateNationInput: UpdateNationInput!): Nation!
+  removeNation(id: ID!): Nation!
+  createPlayer(createPlayerInput: CreatePlayerInput!): Player!
+  updatePlayer(id: ID!, updatePlayerInput: UpdatePlayerInput!): Player!
+  removePlayer(id: Float!): Player!
+  createTeamTournament(createTeamTournamentInput: CreateTeamTournamentInput!): TeamTournament!
+  updateTeamTournament(id: ID!, updateTeamTournamentInput: UpdateTeamTournamentInput!): TeamTournament!
+  removeTeamTournament(id: ID!): TeamTournament!
+  createPlayerTournament(createPlayerTournamentInput: CreatePlayerTournamentInput!): PlayerTournament!
+  updatePlayerTournament(id: ID!, updatePlayerTournamentInput: UpdatePlayerTournamentInput!): PlayerTournament!
+  removePlayerTournament(id: ID!): PlayerTournament!
+}
+
+"""Create league input object type."""
+input CreateLeagueInput {
+  """A new league name"""
+  name: String!
+
+  """A new league short name"""
+  short_name: String!
+
+  """A new league start year"""
+  start_year: Int!
+
+  """A new league end year"""
+  end_year: Int
+
+  """A new league color"""
+  color: String
+
+  """Is the league local?"""
+  is_local: Boolean! = false
+}
+
+input UpdateLeagueInput {
+  """A new league name"""
+  name: String
+
+  """A new league short name"""
+  short_name: String
+
+  """A new league start year"""
+  start_year: Int
+
+  """A new league end year"""
+  end_year: Int
+
+  """A new league color"""
+  color: String
+
+  """Is the league local?"""
+  is_local: Boolean = false
+}
+
+"""Create league logo input object type."""
+input CreateLeagueLogoInput {
+  """A new league logo start year"""
+  start_year: Int!
+
+  """A new league logo end year"""
+  end_year: Int = null
+
+  """A new league logo link"""
+  logo: String!
+
+  """A new league logo league ID"""
+  league_id: Int!
+}
+
+input UpdateLeagueLogoInput {
+  """A new league logo start year"""
+  start_year: Int
+
+  """A new league logo end year"""
+  end_year: Int = null
+
+  """A new league logo link"""
+  logo: String
+
+  """A new league logo league ID"""
+  league_id: Int
+}
+
+"""Create season input object type."""
+input CreateSeasonInput {
+  """A new season id"""
+  id: Int!
+
+  """A new season name"""
+  name: String!
+
+  """A new season logo"""
+  logo: String!
+
+  """A new season link"""
+  link: String!
+}
+
+input UpdateSeasonInput {
+  """A new season id"""
+  id: Int
+
+  """A new season name"""
+  name: String
+
+  """A new season logo"""
+  logo: String
+
+  """A new season link"""
+  link: String
+}
+
+"""Create tournament input object type."""
+input CreateTournamentInput {
+  """A new tournament season_id"""
+  season_id: Int!
+
+  """A new tournament league_id"""
+  league_id: Int!
+}
+
+input UpdateTournamentInput {
+  """A new tournament season_id"""
+  season_id: Int
+
+  """A new tournament league_id"""
+  league_id: Int
+}
+
+"""Create team logo input object type."""
+input CreateTeamLogoInput {
+  """A new team logo start year"""
+  start_year: Int!
+
+  """A new team logo end year"""
+  end_year: Int
+
+  """A new team logo link"""
+  logo: String!
+
+  """A new team logo team ID"""
+  team_id: Int!
+}
+
+input UpdateTeamLogoInput {
+  """A new team logo start year"""
+  start_year: Int
+
+  """A new team logo end year"""
+  end_year: Int
+
+  """A new team logo link"""
+  logo: String
+
+  """A new team logo team ID"""
+  team_id: Int
+}
+
+"""Create team input object type."""
+input CreateTeamInput {
+  """A new team full name"""
+  full_name: String!
+
+  """A new team name"""
+  name: String!
+
+  """A new team short name"""
+  short_name: String!
+
+  """A new team start year"""
+  start_year: Int!
+
+  """A new team end year"""
+  end_year: Int
+}
+
+input UpdateTeamInput {
+  """A new team full name"""
+  full_name: String
+
+  """A new team name"""
+  name: String
+
+  """A new team short name"""
+  short_name: String
+
+  """A new team start year"""
+  start_year: Int
+
+  """A new team end year"""
+  end_year: Int
+}
+
+"""Create nation input object type."""
+input CreateNationInput {
+  """A new nation name"""
+  name: String!
+
+  """A new nation short name"""
+  short_name: String!
+
+  """A new nation flag"""
+  flag: String!
+
+  """A new nation logo"""
+  logo: String!
+
+  """A new nation color"""
+  color: String
+}
+
+input UpdateNationInput {
+  """A new nation name"""
+  name: String
+
+  """A new nation short name"""
+  short_name: String
+
+  """A new nation flag"""
+  flag: String
+
+  """A new nation logo"""
+  logo: String
+
+  """A new nation color"""
+  color: String
+}
+
+"""Create player input object type."""
+input CreatePlayerInput {
+  """A new player first name"""
+  first_name: String!
+
+  """A new player last name"""
+  last_name: String!
+
+  """A new player jersey number"""
+  jersey_number: Int!
+
+  """A new player position"""
+  player_position: String!
+
+  """A new player order number"""
+  player_order: Int!
+
+  """A new player nation_id"""
+  nation_id: Int!
+
+  """A new player birth year"""
+  birth_year: Int!
+
+  """A new player height"""
+  height: Int
+
+  """A new player weight"""
+  weight: Int
+
+  """A new player weight"""
+  draft_team_id: Int
+
+  """A new player start year"""
+  start_year: Int!
+
+  """A new player end year"""
+  end_year: Int
+}
+
+input UpdatePlayerInput {
+  """A new player first name"""
+  first_name: String
+
+  """A new player last name"""
+  last_name: String
+
+  """A new player jersey number"""
+  jersey_number: Int
+
+  """A new player position"""
+  player_position: String
+
+  """A new player order number"""
+  player_order: Int
+
+  """A new player nation_id"""
+  nation_id: Int
+
+  """A new player birth year"""
+  birth_year: Int
+
+  """A new player height"""
+  height: Int
+
+  """A new player weight"""
+  weight: Int
+
+  """A new player weight"""
+  draft_team_id: Int
+
+  """A new player start year"""
+  start_year: Int
+
+  """A new player end year"""
+  end_year: Int
+}
+
+"""Create team tournament input object type."""
+input CreateTeamTournamentInput {
+  """A new team tournament tournament_id"""
+  tournament_id: Int!
+
+  """A new team tournament team_id"""
+  team_id: Int!
+
+  """A new team tournament games"""
+  games: Int! = 0
+
+  """A new team tournament wins"""
+  wins: Int! = 0
+
+  """A new team tournament ties"""
+  ties: Int! = 0
+
+  """A new team tournament losts"""
+  losts: Int! = 0
+
+  """A new team tournament goals for"""
+  goals_for: Int! = 0
+
+  """A new team tournament goals against"""
+  goals_against: Int! = 0
+
+  """A new team tournament postseason"""
+  postseason: String! = ""
+}
+
+input UpdateTeamTournamentInput {
+  """A new team tournament tournament_id"""
+  tournament_id: Int
+
+  """A new team tournament team_id"""
+  team_id: Int
+
+  """A new team tournament games"""
+  games: Int = 0
+
+  """A new team tournament wins"""
+  wins: Int = 0
+
+  """A new team tournament ties"""
+  ties: Int = 0
+
+  """A new team tournament losts"""
+  losts: Int = 0
+
+  """A new team tournament goals for"""
+  goals_for: Int = 0
+
+  """A new team tournament goals against"""
+  goals_against: Int = 0
+
+  """A new team tournament postseason"""
+  postseason: String = ""
+}
+
+"""Create player tournament input object type."""
+input CreatePlayerTournamentInput {
+  """A new player tournament teams_tournament_id"""
+  teams_tournament_id: Int!
+
+  """A new player tournament player_id"""
+  player_id: Int!
+
+  """A new player tournament games"""
+  games: Int! = 0
+
+  """A new player tournament wins"""
+  goals: Int! = 0
+
+  """A new player tournament postseason"""
+  postseason: String
+}
+
+input UpdatePlayerTournamentInput {
+  """A new player tournament teams_tournament_id"""
+  teams_tournament_id: Int
+
+  """A new player tournament player_id"""
+  player_id: Int
+
+  """A new player tournament games"""
+  games: Int = 0
+
+  """A new player tournament wins"""
+  goals: Int = 0
+
+  """A new player tournament postseason"""
+  postseason: String
+}
