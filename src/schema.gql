@@ -787,6 +787,9 @@ type Roster {
   """The ID of league"""
   league_id: ID!
 
+  """The ID of team"""
+  team_id: ID!
+
   """The full name of team"""
   full_name: String!
 

@@ -62,6 +62,9 @@ export class Roster {
   @Field(() => ID, { description: 'The ID of league' })
   league_id: number;
 
+  @Field(() => ID, { description: 'The ID of team' })
+  team_id: number;
+
   @Field({ description: 'The full name of team' })
   full_name: string;
 

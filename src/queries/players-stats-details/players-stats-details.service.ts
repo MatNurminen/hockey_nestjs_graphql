@@ -173,7 +173,7 @@ export class PlayersStatsDetailsService {
       `SELECT players_tournaments.*, players.first_name, players.last_name, players.jersey_number, 
       players.player_position, players.player_order, players.nation_id, players.birth_year, players.height, 
       players.weight, players.draft_team_id, players.start_year, players.end_year, tournaments.season_id, 
-      tournaments.league_id, teams.full_name, leagues.short_name, seasons.name, nations.flag, 
+      tournaments.league_id, teams.id AS team_id, teams.full_name, leagues.short_name, seasons.name, nations.flag, 
       league_logos.logo AS league_logo, team_logos.logo, draft_teams.logo AS draft_logo 
       FROM players_tournaments
       INNER JOIN players ON players_tournaments.player_id = players.id
